@@ -29,4 +29,20 @@ diameter = 12 # This is inches
 Area = pi * (diameter/2)^2
 Area
 ```
-
+ git config --global user.email "bjg57@medschl.cam.ac.uk"
+  git config --global user.name "Bethany Gilson"
+  
+## 8.7 R Data Type Exercises
+The 'class()'function returns
+```{r}
+# convert true to an integer
+TRUE
+FALSE
+as.integer(TRUE)
+# as.numeric(TRUE)
+Class(Sys.time(13:00))
+Class(Sys.timezone(BST))
+'"DO YOU THINK THIS IS A GAME?", HE SAID. "NO, I THINK JENGA\'S A GAME", ARCHER RESPONDED.'
+```
+  [1] "CARACTER"
+  
