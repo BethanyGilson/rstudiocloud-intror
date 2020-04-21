@@ -1,0 +1,43 @@
+---
+title: "ggplot2movies"
+author: Bethany Gilson
+date: 2020-04-21
+output: html_notebook
+---
+
+
+```{r}
+install.packages("ggplot2movies")
+```
+
+```{r}
+library("ggplot2movies")
+```
+
+```{r}
+ggplot2movies::movies
+```
+
+```{r}
+DataExplorer::create_report(movies_raw, y="Action")
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+movies_raw %>% 
+  filter(Action > 0.5)
+```
+
+```{r}
+movies_raw %>% 
+  filter(length < 360)
+```
+
+```{r}
+movies_raw %>% 
+  filter(Action < 1, Animation < 1, Comedy < 1, Drama < 1, Documentary < 1, Romance < 1, Short < 1)
+```
+

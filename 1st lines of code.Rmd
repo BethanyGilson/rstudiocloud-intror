@@ -46,3 +46,50 @@ class(Sys.timezone())
 ```
   [1] "CARACTER"
   
+```{r}
+ex_vector = c(1, 2, 3, 4, 5)
+ex_vector = 1:5
+ex_vector = 5:-5
+letters
+pi*ex_vector^2
+"Red" == "red"
+sum(1:5)
+Sys.Date()
+Sys.time()
+install_deps()
+```
+```{r}
+t(matrix(LETTERS, nrow=13))
+ex_matrix = matrix(LETTERS, nrow=13)
+
+ex_matrix[1, ]
+ex_matrix[1:5, ]
+ex_matrix[c(1,3,5,7),]
+ex_matrix[ ,1]
+ex_matrix[2,2]
+ex_matrix[-1, ]
+ex_matrix[-5:-10, ]
+
+include_filter = ex_matrix[ , 1] <= "F"
+ex_matrix[include_filter, ]
+
+ex_matrix[ex_matrix[ , 1] <= "F", ]
+```
+
+
+
+```{r}
+my_assay_results = read.csv("quickarray.csv")
+int_assay_results = my_assay_results[ ,-1]
+cleaned_assay_results = as.matrix(int_assay_results)
+cleaned_assay_results
+```
+
+
+```{r}
+array(LETTERS[1:24],c(2,2,6))
+```
+```{r}
+write.csv(array(LETTERS[1:24],c(2,2,6)), "quickarray.csv")
+```
+
