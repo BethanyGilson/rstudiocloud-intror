@@ -1,0 +1,59 @@
+---
+title: "Data Science"
+Author: Bethany Gilson
+Date: 2020-04-22
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(AppliedPredictiveModeling)
+data(AlzheimerDisease)
+alzheimers <- predictors %>% cbind(diagnosis)
+```
+
+```{r}
+library(lattice)
+library(PASWR)
+library(skimr)
+library(xray)
+library(naniar)
+library(DataExplorer)
+PASWR::titanic3
+
+View(titanic3)
+```
+
+```{r}
+skim(titanic3)
+  
+```
+
+```{r}
+xray::distributions(titanic3)
+```
+
+```{r}
+naniar::miss_prop_summary(titanic3)
+```
+
+```{r}
+library(tidymodels)
+```
+
+```{r}
+set.seed(8787)
+```
+
+```{r}
+library(FFTrees)
+```
+
+```{r}
+titanic %>% FFTrees(survived ~ ., .)
+```
+
+```{r}
+titanic %>% FFTrees(survived ~ ., .) %>% plot()
+```
+
