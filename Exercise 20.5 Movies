@@ -27,17 +27,87 @@ library(tidyverse)
 ```
 
 ```{r}
-movies_raw %>% 
-  filter(Action > 0.5)
+movies %>% 
+  filter(Action == 1)
 ```
 
 ```{r}
-movies_raw %>% 
-  filter(length < 360)
+movies %>% 
+  filter(length <= 360)
 ```
 
 ```{r}
-movies_raw %>% 
+movies %>% 
   filter(Action < 1, Animation < 1, Comedy < 1, Drama < 1, Documentary < 1, Romance < 1, Short < 1)
 ```
 
+```{r}
+movies %>%
+  filter_at(vars(Action:Short), all_vars( . ==0))
+```
+
+
+## output movies with a renamed collumn
+```{r}
+movies %>%
+  rename(budget_if_known = budget) ->
+  movies_cleaned
+
+movies %>% 
+  select(budget_if_known = budget, everything())
+```
+
+## changing or adding columns
+```{r}
+iris %>% 
+  mutate(Sepal.Length = Sepal.Length - 0.1,
+         Sepal.Area = Sepal.Length * Sepal.Width,
+         Species_trun = str_trunc(as.character(Species),3),
+         Diff.Sepal.length = Sepal.Length - mean(Sepal.Length)/mean(Sepal.Length))
+
+```
+
+```{r}
+# Add a column to movies that says how much the length differs from the median.
+movies %>% 
+  mutate(diff_length = length - median(length)) ->
+  movies_diff
+```
+
+## Aggregating our data
+- groups = group by
+- aggregation = summarise
+
+```{r}
+iris %>% 
+  group_by(Species) %>% 
+  summarise(count = n(), avg.Sepal.Length = mean(Sepal.Length))
+
+iris %>% 
+  group_by(Species) %>% 
+  summarise_all(mean)
+
+iris %>% 
+  mutate( Diff.Sepal.Length = (Sepal.Length - mean(Sepal.Length))/mean(Sepal.Length)) %>% 
+  group_by(Species) %>% 
+  mutate( Species.Diff.Sepal.Length = (Sepal.Length - mean(Sepal.Length))/mean(Sepal.Length))
+```
+
+## Find the min and max values for length in movies
+## In a pipeline, find out what proportion of films are action movies, action comedies, comedies and neither action or comedy.
+  
+```{r}
+# Movie length range
+movies %>% 
+  summarise(min(length)/60, max(length)/60)
+
+# Proportion by genre
+movies %>%
+  group_by(Action, Comedy) %>% 
+  summarise(n=n()) %>% 
+  ungroup () %>% 
+  mutate(per=n/sum(n)) # %>%  # check step
+  #summarise(sum(per))
+```
+  
+  
